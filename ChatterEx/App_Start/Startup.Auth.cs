@@ -58,11 +58,11 @@ namespace ChatterEx
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "917036305978-3p3utasm8i3f04u9chn56691ddhsvd0k.apps.googleusercontent.com",
+                ClientSecret = "swcBaNLAm5g9o8zY_awV7wsN"
+            });
         }
     }
 }
