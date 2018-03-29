@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ChatterEx;
+using Newtonsoft.Json;
+
 
 namespace ChatterEx.Controllers
 {
@@ -23,17 +25,17 @@ namespace ChatterEx.Controllers
 
         public JsonResult TestJson()
         {
-            var chat = from Chats in db.ChatEx
+            var chat = from Chats in db.Chats
 
                        orderby
-                       ChatEx.Timestamp
+                       Chats.TimeStamp descending
 
                        select new
                        {
                            Chats.Message,
                            Chats.AspNetUser.UserName
                        };
-            var output = JsonConvert.SerializeObject(ChatEx.ToList());
+            var output = JsonConvert.SerializeObject(chat.ToList());
 
             return Json(output, JsonRequestBehavior.AllowGet);
 
