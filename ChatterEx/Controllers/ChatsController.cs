@@ -23,11 +23,23 @@ namespace ChatterEx.Controllers
 
         public JsonResult TestJson()
         {
-            string jsonTest = "{ \"firstName\": \"Bob\", \"lastName\": \"Sauce\", \"children\": [{ \"firstName\": \"Barbie\", \"age\": 19 }, {\"firstName\": \"Ron\", \"age\": null }] }";
+            var chat = from Chats in db.ChatEx
 
-                return Json(jsonTest, JsonRequestBehavior.AllowGet);
+                       orderby
+                       ChatEx.Timestamp
+
+                       select new
+                       {
+                           Chats.Message,
+                           Chats.AspNetUser.UserName
+                       };
+            var output = JsonConvert.SerializeObject(ChatEx.ToList());
+
+            return Json(output, JsonRequestBehavior.AllowGet);
+
             }
 
+           
 
             // GET: Chats/Details/5
             public ActionResult Details(int? id)
